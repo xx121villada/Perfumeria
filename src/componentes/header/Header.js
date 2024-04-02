@@ -1,11 +1,11 @@
 import React from "react";
 import './header.css';
 import HomeIcon from '@mui/icons-material/Home';
-import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
-import AddLinkIcon from '@mui/icons-material/AddLink';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import LoginIcon from '@mui/icons-material/Login';
+import {Link} from "react-router-dom";
 
 function Header() {
     return (
@@ -20,25 +20,25 @@ function Header() {
                                 <a className="nav-link active" aria-current="page" href="#">Home</a>
                             </li>
                             <li className="nav-item">
-                                <VideoLibraryIcon/>
-                                <a className="nav-link" href="#"> Tutoriales </a>
-                            </li>
-                            <li className="nav-item">
-                                <AddLinkIcon/>
-                                <a className="nav-link"> Referencias </a>
+                                <AttachMoneyIcon/>
+                                <a className="nav-link"> Ofertas </a>
                             </li>
                             <li className="nav-item">
                                 <AddIcCallIcon/> 
                                 <a className="nav-link"> Contacto </a>
                             </li>
+                            <Link to='/registro'>
                             <li className="nav-item">
                                 <AccountBoxIcon/>
                                 <a className="nav-link"> Registrarse </a>
                             </li>
+                            </Link>
+                            <Link to="/login">
                             <li className="nav-item">
                                 <LoginIcon/>
                                 <a className="nav-link"> Iniciar sesión </a>
                             </li>
+                            </Link>
                         </ul>
                         <form className="d-flex" role="search">
                             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
