@@ -66,7 +66,7 @@ export default function Footer() {
 
                             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
 
-                                <h6> Contact</h6>
+                                <h6> CONTACTO </h6>
                                 <p>
                                     <RoomIcon/> Pereira, Colombia, 2024</p>
                                 <p>
