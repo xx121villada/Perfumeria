@@ -1,68 +1,226 @@
-import React, {useState} from 'react'
+import React, { useRef, useState } from 'react'
+import Swal from 'sweetalert2'
 import './registro.css'
+// import { Link } from 'react-router-dom';
+// import Header from './header/Header';
+// import Footer from './footer/Footer';
+
 
 export default function Registro() {
 
-    const[values, setValues] = useState({
-        documento:"",
-        nombre:"",
-        apellido:"",
-        email:"",
-        direccion:"",
-        telefono:"",
-        fecha:"",
-        contra:"",
-        contra2:"",
-    }); 
-    const handlechange = (e) =>{
-        const {name, value} = e.target 
-        const newValues= {
+    const [identificacionError, setIdentificacionError] = useState(false)
+    const [nomError, setNomError] = useState(false)
+    const [apellidoError, setApellidoError] = useState(false)
+    const [emailError, setEmailError] = useState(false)
+    const [emailErrorVacio, setErrorEmailVacio] = useState(false)
+    const [direccionError, setDireccionError] = useState(false)
+    const [telefonoError, setTelefonoError] = useState(false)
+    const [fechaNacimientoError, setFechaNacimientoError] = useState(false)
+    const [passwordError, setPasswordError] = useState(false)
+    const [passwordErrorRepeat, setPasswordErrorRepeat] = useState(false)
+    const [passComparacion, setPassComparacion] = useState(false)
+
+    const form = useRef()
+
+    function idError() { //Esta función setea a false la variable "identificacionError" para que el mensaje de error desaparezca cuando hacen click en el campo de la identificación.
+        setIdentificacionError(false)
+    }
+    function nombreError() { //Esta función setea a false la variable "nomError" para que el mensaje de error desaparezca cuando hacen click en el campo del nombre.
+        setNomError(false)
+    }
+    function apelliError() {
+        setApellidoError(false)
+    }
+    function errorEmail() {
+        setEmailError(false) //Para cuando no escriban una dirección de correo válida en su estructura.
+        setErrorEmailVacio(false) //Para cuan do dejen vacío el campo email
+    }
+    function dirError() {
+        setDireccionError(false)
+    }
+    function telError() {
+        setTelefonoError(false)
+    }
+    function fechaNacimientoErrorFuncion() {
+        setFechaNacimientoError(false)
+    }
+    function passError() {
+        setPasswordError(false)
+    }
+    function passRepeat() {
+        //setPasswordErrorRepeat(false)
+        setPassComparacion(false)
+        setPasswordErrorRepeat(false)
+    }
+
+    //   const handleChange = (e) => { //cuando se cambie de Input entonces se guarda la información en la variables.
+
+    //     const { name, value } = e.target
+    //     const newValues = {
+    //         ...values,
+    //         [name]: value,
+    //     }
+    //     setValues(newValues)
+    // }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        let validPassword = /^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[#?!@$%^&*-]).{8,}$/  //Expersión regular para: Mínimo 8 caracteres de longitud. Almenos una letra mayúscula. Almenos una letra minúscula. Almenos un número. Almenos un caracter especial. https://uibakery.io/regex-library/password
+        let validEmail = /^\w+([.-_+]?\w+)@\w+([.-]?\w+)(\.\w{2,10})+$/; //Expresión regular para validar email, es decir, que el email ingresado tenga el formato correcto de una dirección de correo electrónico
+
+        if (values.identificacion.length < 5 || values.identificacion.length > 10 || values.identificacion.length === 0) {
+            setIdentificacionError(true)
+            return
+        }
+        else if (values.nombres.length < 3 || values.nombres.length === 0) { //El método trim( ) elimina los espacios en blanco en ambos extremos del string.        
+            setNomError(true)
+            return
+        }
+        else if (values.apellidos.length < 3 || values.apellidos.length === 0) {
+            setApellidoError(true)
+            return
+        }
+        else if (values.email.length === 0) {
+            setErrorEmailVacio(true)
+            return
+        }
+
+        else if (!validEmail.test(values.email)) {
+            setEmailError(true)
+            return
+        }
+        else if (values.direccion.length < 15) {
+            setDireccionError(true)
+            return
+        }
+        else if (values.telefono.length < 10 || values.telefono.length > 10) {
+            setTelefonoError(true)
+            return
+        }
+        else if (values.fechaNacimiento === "") {
+            setFechaNacimientoError(true)
+            return
+        }
+        else if (!validPassword.test(values.password)) {
+            setPasswordError(true)
+            return
+        }
+        else if (values.passRepeat.length === 0) {
+            setPasswordErrorRepeat(true)
+            return
+        }
+        else if (values.password !== values.passRepeat) {
+            setPassComparacion(true)
+            return
+        }
+
+
+        fetch('http://localhost:3001/registro-usuario', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json", 'Accept': 'application/json' },
+            body: JSON.stringify(values)
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    // alert("Usuario creado con éxito")
+                    Swal.fire({
+                        title: "Usuario creado con éxito",
+                        icon: "success"
+                    })
+                    form.current.reset()
+                    window.location.hash = '/login'
+
+                }
+                if (response.status === 400) {
+                    //alert(" + response.status)
+                    Swal.fire({
+                        title: "No fue posible crear el usuario porque ya existe el correo ingresado " + values.email,
+                        icon: "warning"
+                    })
+
+                }
+            })
+            .catch((error) => {
+                //alert("No fue posible finalizar el proceso de registro por un error " + error)
+                Swal.fire({
+                    title: "No fue posible finalizar el proceso de registro por un error interno del servidor ",
+                    icon: "error"
+                })
+            })
+    }
+
+
+    const [values, setValues] = useState({
+        identificacion: "",
+        nombres: "",
+        apellidos: "",
+        email: "",
+        direccion: "",
+        telefono: "",
+        fechaNacimento: "",
+        password: "",
+        passRepeat: "",
+    });
+    const handleChange = (e) => {
+
+        const { name, value } = e.target
+        const newValues = {
             ...values,
-            [name]:value, 
+            [name]: value,
         }
         setValues(newValues)
     }
 
     return (
-        <div className="principal1">
-            <form >
-                <div className="form-group">
-                    <label for="documento">Documento</label>
-                    <input type="number" className="form-control" id="documento" name="documento" onChange={handlechange} placeholder="Debe de estar entre 5 y 10 digitos" />
+
+        <div className='formulario'>
+            <form onSubmit={handleSubmit} ref={form}>
+                <div class="form-group">
+                    <label for="numeroId">Documento</label>
+                    <input type="number" class="form-control" id="inputNumero" name='identificacion' onChange={handleChange} onClick={idError} placeholder="entre 5 y 10 dígito" />
+                    {identificacionError ? <p> Debe estar entre 5 y 10 digitos</p> : ""}
                 </div>
-                <div className="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" className="form-control" id="nombre" name="nombre" onChange={handlechange} placeholder="Debe ser de minimo 3 caracteres" />
+                <div class="form-group">
+                    <label for="nombres">Nombres</label>
+                    <input type="text" class="form-control" id="inputNombre" name='nombres' onChange={handleChange} onClick={nombreError} placeholder="mínimo de tres caracteres" />
+                    {nomError ? <p>Debe ser de minimo tres caracteres</p> : ""}
                 </div>
-                <div className="form-group">
-                    <label for="apellido">Apellido</label>
-                    <input type="text" className="form-control" id="apellido" name="apellido" onChange={handlechange} placeholder="Debe ser de minimo 3 caracteres" />
+                <div class="form-group">
+                    <label for="apellidos">Apellidos</label>
+                    <input type="text" class="form-control" id="inputApellido" name='apellidos' onChange={handleChange} onClick={apelliError} placeholder="mínimo de tres caracteres" />
+                    {apellidoError ? <p>Debe ser de minimo tres caracteres</p> : ""}
                 </div>
-                <div className="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" className="form-control" id="email" name="email"  onChange={handlechange} placeholder="Debe ser de minimo 3 caracteres" />
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="inputEmail" name='email' onChange={handleChange} onClick={errorEmail} placeholder="example@gmail.com" />
+                    {emailError ? <p>Debe ser tener la composicion alguien@gmail.com</p> : ""}
                 </div>
-                <div className="form-group">
+                <div class="form-group">
                     <label for="direccion">Direccion</label>
-                    <input type="password" className="form-control" id="direccion" name="direccion" onChange={handlechange} placeholder="Debe tener un formato valido Ejemplo: user@gmail.com" />
+                    <input type="text" class="form-control" id="inputDireccion" name='direccion' onChange={handleChange} onClick={dirError} placeholder="Direcccion" />
+                    {direccionError ? <p>Escriba una direccion valida</p> : ""}
                 </div>
-                <div className="form-group">
+                <div class="form-group">
                     <label for="telefono">Telefono</label>
-                    <input type="number" className="form-control" id="telefono" name="telefono" onChange={handlechange} placeholder="Debe ser de 10 numeros" />
+                    <input type="number" class="form-control" id="inputTelefono" name='telefono' onChange={handleChange} onClick={telError} placeholder="Debe tener 10 numeros" />
+                    {telefonoError ? <p>Debe ser de 10 numeros</p> : ""}
                 </div>
-                <div className="form-group">
-                    <label for="fecha">Fecha de nacimiento</label>
-                    <input type="date" className="form-control" id="fecha" name="fecha" onChange={handlechange} placeholder="Dede ser de minimo 3 caracteres" />
+                <div class="form-group">
+                    <label for="fecha">Fecha de Nacimiento</label>
+                    <input type="date" class="form-control" id="inputFecha" name='fechaNacimiento' onChange={handleChange} onClick={fechaNacimientoErrorFuncion} placeholder="Fecha de Nacimiento" />
+                    {fechaNacimientoError ? <p>Debe ser una fecha valida</p> : ""}
                 </div>
-                <div className="form-group">
-                    <label for="contraseña"> Contraseña </label>
-                    <input type="password" className="form-control" id="contra" name="contra" onChange={handlechange} placeholder="debe ser de minimo 8 caracteres, una mayuscula, una minuscula, un numero " />
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" class="form-control" id="inputPassword" name='password' onChange={handleChange} onClick={passError} placeholder="Debe tener 8 caracteres" />
+                    {passwordError ? <p>Debe ser de 8 caracteres, 1 mayuscula,1 minuscula y un numero</p> : ""}
                 </div>
-                <div className="form-group2">
-                    <label for="contraseña2">Repita su contraseña</label>
-                    <input type="password" className="form-control" id="contra2" name="contra2" onChange={handlechange} placeholder="Repita su contraseña" />
+                <div class="form-group2">
+                    <label for="confirmar">Confirmar Contraseña</label>
+                    <input type="password" class="form-control" id="inputConfirmar" name='passRepeat' onChange={handleChange} onClick={passRepeat} placeholder="Confirmar" />
+                    {passwordErrorRepeat ? <p>Debe ser de minimo tres caracteres</p> : ""}
                 </div>
-                <button type="submit" >Registrarme</button>
+                <button type="submit">Registrarse</button>
             </form>
         </div>
     )

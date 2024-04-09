@@ -11,11 +11,11 @@ form button{
     border-radius: 5px;
     font-size: 18px;
 }
-button:hover{
+form button:hover{
     background-color: black;
     color: white;
 }
-.principal1{
+.formulario{
     display: flex;
     justify-content: center;
     width: 100%;
@@ -28,4 +28,8 @@ button:hover{
 }
 .form-group2{
     padding: 10px;
+}
+.form-group p{
+    color:rgb(111, 4, 122);
+    font-size: 20px;
 }
