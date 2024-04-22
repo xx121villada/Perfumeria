@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import Swal from 'sweetalert2'
 import './registro.css'
+import colombiaData from './colombia'
 // import { Link } from 'react-router-dom';
 // import Header from './header/Header';
 // import Footer from './footer/Footer';
@@ -19,6 +20,7 @@ export default function Registro() {
     const [passwordError, setPasswordError] = useState(false)
     const [passwordErrorRepeat, setPasswordErrorRepeat] = useState(false)
     const [passComparacion, setPassComparacion] = useState(false)
+    const [ciudades, setCiudades] = useState([]);
 
     const form = useRef()
 
@@ -53,19 +55,32 @@ export default function Registro() {
         setPasswordErrorRepeat(false)
     }
 
-    //   const handleChange = (e) => { //cuando se cambie de Input entonces se guarda la información en la variables.
+    const [values, setValues] = useState({
+        identificacion: "",
+        nombres: "",
+        apellidos: "",
+        email: "",
+        direccion: "",
+        telefono: "",
+        fechaNacimento: "",
+        password: "",
+        passRepeat: "",
+        ciudades: "",
+    });
+    const handleChange = (e) => {
 
-    //     const { name, value } = e.target
-    //     const newValues = {
-    //         ...values,
-    //         [name]: value,
-    //     }
-    //     setValues(newValues)
-    // }
+        const { name, value } = e.target
+        const newValues = {
+            ...values,
+            [name]: value,
+        }
+        setValues(newValues)
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        let validPassword = /^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[#?!@$%^&*-]).{8,}$/  //Expersión regular para: Mínimo 8 caracteres de longitud. Almenos una letra mayúscula. Almenos una letra minúscula. Almenos un número. Almenos un caracter especial. https://uibakery.io/regex-library/password
+        let validPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/; //Expersión regular para: Mínimo 8 caracteres de longitud. Almenos una letra mayúscula. Almenos una letra minúscula. Almenos un número. Almenos un caracter especial. https://uibakery.io/regex-library/password
         let validEmail = /^\w+([.-_+]?\w+)@\w+([.-]?\w+)(\.\w{2,10})+$/; //Expresión regular para validar email, es decir, que el email ingresado tenga el formato correcto de una dirección de correo electrónico
 
         if (values.identificacion.length < 5 || values.identificacion.length > 10 || values.identificacion.length === 0) {
@@ -117,7 +132,9 @@ export default function Registro() {
 
         fetch('http://localhost:3001/registro-usuario', {
             method: 'POST',
-            headers: { "Content-Type": "application/json", 'Accept': 'application/json' },
+            headers: {
+                "Content-Type": "application/json", 'Accept': 'application/json'
+            },
             body: JSON.stringify(values)
         })
             .then(response => {
@@ -126,7 +143,7 @@ export default function Registro() {
                     Swal.fire({
                         title: "Usuario creado con éxito",
                         icon: "success"
-                    })
+                    });
                     form.current.reset()
                     window.location.hash = '/login'
 
@@ -136,8 +153,7 @@ export default function Registro() {
                     Swal.fire({
                         title: "No fue posible crear el usuario porque ya existe el correo ingresado " + values.email,
                         icon: "warning"
-                    })
-
+                    });
                 }
             })
             .catch((error) => {
@@ -145,31 +161,17 @@ export default function Registro() {
                 Swal.fire({
                     title: "No fue posible finalizar el proceso de registro por un error interno del servidor ",
                     icon: "error"
-                })
-            })
+                });
+            });
     }
 
+    //const [ciudades, setCiudades] = useState([]);
 
-    const [values, setValues] = useState({
-        identificacion: "",
-        nombres: "",
-        apellidos: "",
-        email: "",
-        direccion: "",
-        telefono: "",
-        fechaNacimento: "",
-        password: "",
-        passRepeat: "",
-    });
-    const handleChange = (e) => {
-
-        const { name, value } = e.target
-        const newValues = {
-            ...values,
-            [name]: value,
-        }
-        setValues(newValues)
-    }
+    const cambioDepartamento = (e) => {
+        const departamentoSeleccionado = e.target.value;
+        const ciudadesDepartamento = colombiaData.find((item) => item.departamento === departamentoSeleccionado)?.ciudades || [];
+        setCiudades(ciudadesDepartamento);
+    };
 
     return (
 
@@ -219,6 +221,27 @@ export default function Registro() {
                     <label for="confirmar">Confirmar Contraseña</label>
                     <input type="password" class="form-control" id="inputConfirmar" name='passRepeat' onChange={handleChange} onClick={passRepeat} placeholder="Confirmar" />
                     {passwordErrorRepeat ? <p>Debe ser de minimo tres caracteres</p> : ""}
+                </div>
+                <div className='select-container'>
+                    <select onChange={cambioDepartamento} className="registro-select">
+                        <option value="">Seleccione un departamento </option>
+                        {colombiaData.map((item) => (
+                            <option key={item.departamento} value={item.departamento}>
+                                {item.departamento}
+                            </option>
+                        ))}
+                    </select>
+
+                    <select className='registro-select'>
+                        <option value="" onChange={handleChange}>Seleccione una ciudad</option>
+                        {ciudades.map((ciudad) => (
+                            <option key={ciudad} value={ciudad}>
+                                {ciudad}
+                            </option>
+                        ))}
+                    </select>
+
+
                 </div>
                 <button type="submit">Registrarse</button>
             </form>

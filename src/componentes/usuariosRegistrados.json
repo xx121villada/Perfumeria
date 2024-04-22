@@ -1,3 +1,55 @@
 [
-    
+    {
+        "id": 1,
+        "identificacion": "24763657",
+        "nombres": "Ximena",
+        "apellidos": "villada",
+        "email": "x336562@gmail.com",
+        "direccion": "carrera 2 #17-13",
+        "telefono": "3234578912",
+        "fechaNacimiento": "2006-01-28",
+        "Password": "Mena1234",
+        "estado": "activo",
+        "fecha_creacion": "2024-04-15T20:09:55.112Z"
+    },
+    {
+        "id": 2,
+        "identificacion": "1111111111",
+        "nombres": "camila",
+        "apellidos": "guzman",
+        "email": "cami@gmail.com",
+        "direccion": "carrera 2 #17-13",
+        "telefono": "3216548956",
+        "fechaNacimiento": "2006-01-12",
+        "Password": "Cami1234",
+        "estado": "activo",
+        "fecha_creacion": "2024-04-15T21:19:16.181Z"
+    },
+    {
+        "id": 3,
+        "identificacion": "31455",
+        "nombres": "sofi",
+        "apellidos": "villada",
+        "email": "sofi@gmail.com",
+        "direccion": "carrera 2 #17-13",
+        "telefono": "3548201558",
+        "fechaNacimiento": "2018-01-16",
+        "Password": "Sofi0987",
+        "estado": "activo",
+        "fecha_creacion": "2024-04-22T02:24:23.980Z"
+    },
+    {
+        "id": 4,
+        "identificacion": "1089745148",
+        "nombres": "Maria t",
+        "apellidos": "villada",
+        "email": "maria@gmail.com",
+        "direccion": "marsellaRisaralda",
+        "telefono": "3234266140",
+        "fechaNacimiento": "1989-12-03",
+        "Password": "Maria123",
+        "estado": "activo",
+        "fecha_creacion": "2024-04-22T02:45:39.236Z"
+    }
+
 ]
