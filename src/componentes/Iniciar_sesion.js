@@ -14,6 +14,7 @@ export default function Iniciar_Sesion() {
     const cookie = new Cookies();
     const nombres = cookie.get('nombres');
     const apellidos = cookie.get('apellidos');
+    const email = cookie.get('email'); 
 
     function Cerrar() {
         Swal.fire({
@@ -27,6 +28,9 @@ export default function Iniciar_Sesion() {
         })
             .then((result) => {
                 if (result.isConfirmed) {
+                    cookie.remove("nombres"); 
+                    cookie.remove("apellidos"); 
+                    cookie.remove("email"); 
                     window.location.hash = '/'
                 }
             })
@@ -34,7 +38,7 @@ export default function Iniciar_Sesion() {
     return (
         <div>
             <div>
-                <h2 className='bienvenido'> Bienvenid@  {nombres} {apellidos} </h2>
+                <h2 className='bienvenido'> Bienvenid@  {nombres} {apellidos} <p>{email}</p></h2>
             </div>
             <div className="contenedor">
                 <nav className="navbar navbar-expand-lg">
