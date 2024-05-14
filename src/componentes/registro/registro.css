@@ -1,0 +1,76 @@
+.formRegistro {
+    justify-content: space-around;
+    padding: 5px 20px 5px 20px;
+    width: 610px;
+    background-color: rgb(255, 76, 198);
+    border-radius: 20px;
+}
+
+.btnRegistrar{
+    display: flex;
+    margin: auto;
+    border-radius: 5px;
+    font-size: 24px;
+    background-color: black;
+    color: aliceblue;
+}
+
+.formulario {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+    padding-top: 50px;
+    padding-left: 300px;
+    padding-right: 300px;
+    padding-bottom: 50px;
+    font-size: 30px;
+}
+
+.form-group2 {
+    padding: 10px;
+}
+
+.form-group p {
+    color: rgb(111, 4, 122);
+    font-size: 20px;
+}
+
+.tituloRegistro {
+    font-family: algerian;
+    font-size: 60px;
+    text-align: center;
+}
+
+.password-input {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+}
+
+.password-input input {
+    flex-grow: 1; /* Permite que el input ocupe todo el espacio restante */
+}
+
+.toggle-password {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 5px; /* Ajusta el espaciado entre el input y el botón */
+}
+.departamento{
+    font-size: 25px;
+    padding: 10px;
+    padding-left: 0px;
+}
+.ciudad{
+    font-size: 25px;
+    padding: 10px;
+    padding-left: 0px
+}
+.seleccionar{
+    border-radius: 8px;
+}
+option{
+    font-size: 20px;
+}

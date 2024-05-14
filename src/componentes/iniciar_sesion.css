@@ -1,0 +1,11 @@
+.bienvenido{
+    text-align: center;
+    font-family: algerian;
+    font-size: 50px;
+}
+.btnCerrar{
+    background-color: black;
+    color: aliceblue;
+    border-radius: 5px;
+    font-size: 20px;
+}

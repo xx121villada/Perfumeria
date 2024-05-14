@@ -1,55 +1,32 @@
 [
     {
         "id": 1,
-        "identificacion": "24763657",
-        "nombres": "Ximena",
+        "identificacion": "56656565",
+        "nombres": "Maria t",
         "apellidos": "villada",
-        "email": "x336562@gmail.com",
-        "direccion": "carrera 2 #17-13",
+        "email": "cami1235@gmail.com",
+        "direccion": "calle 21 # 70-12",
         "telefono": "3234578912",
-        "fechaNacimiento": "2006-01-28",
-        "Password": "Mena1234",
+        "fechaNacimiento": "2024-05-08",
+        "password": "Julio123",
         "estado": "activo",
-        "fecha_creacion": "2024-04-15T20:09:55.112Z"
+        "rol": "Usuario",
+        "fecha_creacion": "2024-05-07T19:49:18.858Z",
+        "ciudad": "Guachené"
     },
     {
         "id": 2,
-        "identificacion": "1111111111",
-        "nombres": "camila",
-        "apellidos": "guzman",
-        "email": "cami@gmail.com",
-        "direccion": "carrera 2 #17-13",
-        "telefono": "3216548956",
-        "fechaNacimiento": "2006-01-12",
-        "Password": "Cami1234",
-        "estado": "activo",
-        "fecha_creacion": "2024-04-15T21:19:16.181Z"
-    },
-    {
-        "id": 3,
-        "identificacion": "31455",
-        "nombres": "sofi",
+        "identificacion": "54545454",
+        "nombres": "mami",
         "apellidos": "villada",
-        "email": "sofi@gmail.com",
-        "direccion": "carrera 2 #17-13",
-        "telefono": "3548201558",
-        "fechaNacimiento": "2018-01-16",
-        "Password": "Sofi0987",
+        "email": "cami123@gmail.com",
+        "direccion": "sxdgfhyujikuoiyjtrrgt",
+        "telefono": "3234578912",
+        "fechaNacimiento": "2024-05-09",
+        "password": "Julio123",
         "estado": "activo",
-        "fecha_creacion": "2024-04-22T02:24:23.980Z"
-    },
-    {
-        "id": 4,
-        "identificacion": "1089745148",
-        "nombres": "Maria t",
-        "apellidos": "villada",
-        "email": "maria@gmail.com",
-        "direccion": "marsellaRisaralda",
-        "telefono": "3234266140",
-        "fechaNacimiento": "1989-12-03",
-        "Password": "Maria123",
-        "estado": "activo",
-        "fecha_creacion": "2024-04-22T02:45:39.236Z"
+        "rol": "Administrador",
+        "fecha_creacion": "2024-05-07T19:49:55.269Z",
+        "ciudad": "Florencia"
     }
-
 ]

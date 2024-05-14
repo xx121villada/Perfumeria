@@ -1,7 +1,6 @@
 import React from "react";
 import './header.css';
 import HomeIcon from '@mui/icons-material/Home';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import LoginIcon from '@mui/icons-material/Login';
@@ -28,13 +27,13 @@ function Header() {
                             </li>
                             <Link to='/registro'>
                             <li className="nav-item">
-                                <AccountBoxIcon/>
+                                <AccountBoxIcon className="iconoHeader"/>
                                 <a className="nav-link"> Registrarse </a>
                             </li>
                             </Link>
                             <Link to="/login">
                             <li className="nav-item">
-                                <LoginIcon/>
+                                <LoginIcon className="iconoHeader"/>
                                 <a className="nav-link"> Iniciar sesión </a>
                             </li>
                             </Link>

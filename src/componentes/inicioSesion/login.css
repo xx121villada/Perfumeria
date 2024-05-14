@@ -1,0 +1,40 @@
+.fondo{
+    background-color: rgb(255, 76, 198);
+    border-radius: 20px;
+    justify-content: space-around;
+    padding: 5px 20px 5px 20px;
+    width: 610px;
+}
+.tituloInicio{
+    font-family: algerian;
+    font-size: 60px;
+}
+.btnIniciar{
+    display: flex;
+    margin: auto;
+    border-radius: 5px;
+    font-size: 24px;
+    background-color: black;
+    color: aliceblue;
+}
+.password-input {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+}
+
+.password-input input {
+    flex-grow: 1; /* Permite que el input ocupe todo el espacio restante */
+}
+
+.toggle-password {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 5px; /* Ajusta el espaciado entre el input y el botón */
+}
+.iconos{
+    color: black;
+    display: flex;
+    margin-left: 10px;
+}
