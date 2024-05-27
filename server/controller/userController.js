@@ -1,3 +1,4 @@
+/*codigo JSON registro local
 const fs = require('fs').promises;
 const { password } = require('@mui/icons-material');
 const path = require('path');
@@ -97,4 +98,79 @@ const controller = {
         }
     },
 }
+module.exports = controller;*/
+
+//codigo JSON registro remoto
+
+const express = require("express") //framework
+const app = express()
+const axios = require('axios'); 
+const cors = require("cors"); 
+const { X } = require("@mui/icons-material");
+app.use(cors());
+
+const controller ={
+    register: function(req,res){
+        let config = {
+            method: "GET",
+            maxBodyLength: Infinity,
+            url: 'https://api.jsonbin.io/v3/b/6654d653acd3cb34a84e8a8d',
+            headers: {
+              'Content-Type': 'application/json',
+              "X-Master-Key": "$2a$10$NJqqXp1XvTNOsxGDxucB7.JbP0I51Wna7JNHVurUk9Y9vllQiGby2"
+            }
+        };
+        axios(config)
+            .then(result => {
+                let id = result.data.record.length+1
+                    const usuarioNuevo = {
+
+                        id: id,
+                        identificacion: req.body.identificacion,
+                        nombres: req.body.nombres,
+                        apellidos: req.body.apellidos,
+                        email: req.body.email,
+                        direccion: req.body.direccion,
+                        telefono: req.body.telefono,
+                        fechaNacimiento: req.body.fechaNacimiento,
+                        password: req.body.password,
+                        estado: "activo",
+                        rol: req.body.rol,
+                        fecha_creacion: new Date(),
+                        ciudad: req.body.ciudad,
+                    };
+                    if(result.data.record.length === 0){
+                        result.data.record.push(usuarioNuevo);
+                    }else{
+                        for(x of result.data.record){
+                            if(x.email === req.body.email){
+                                res.status(400).send("Usuario ya existe")
+                                return
+                            }
+                        }
+                        result.data.record.push(usuarioNuevo)
+                    }
+
+                    fetch("https://api.jsonbin.io/v3/b/6654d653acd3cb34a84e8a8d", {
+                        method : "PUT",
+                        headers:{
+                            'Content-Type': 'application/json',
+                            "X-Master-Key": "$2a$10$NJqqXp1XvTNOsxGDxucB7.JbP0I51Wna7JNHVurUk9Y9vllQiGby2"
+                        },
+                        body: JSON.stringify(result.data.record)
+                    })
+                    .then(response => {
+                        if (response.status === 200) {
+                          res.status(200).send('ok')
+                          return
+                        }
+                        else {
+                          res.status(400).send("No Ok")
+                          return
+                        }
+                    })
+            })
+    }
+}
+
 module.exports = controller;
