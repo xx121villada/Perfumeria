@@ -32,6 +32,6 @@ app.use("/registro-usuario", user.register);
 
 const PORT = 3001
     app.listen(PORT,()=>{
-        console.log("servidor corriendo en el puerto",PORT) 
+        console.log("servidor corriendo en el puerto",PORT);
 });
 
