@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 
 export default function Registro() {
 
+    let URL = process.env.REACT_APP_ENVIROMENT
     const [identificacionError, setIdentificacionError] = useState(false)
     const [nomError, setNomError] = useState(false)
     const [apellidoError, setApellidoError] = useState(false)
@@ -135,12 +136,18 @@ export default function Registro() {
             return
         }
 console.log("--->>",values)
-        fetch('http://localhost:3001/registro-usuario', {
+        /*fetch('http://localhost:3001/registro-usuario', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json", 'Accept': 'application/json'
             },
             body: JSON.stringify(values)
+        })*/
+        fetch(`${URL}/registro-usuario`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json", 'Accept': 'application/json'
+            },
         })
             .then(response => {
                 if (response.status === 200) {
