@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 export default function Registro() {
 
-    let URL = process.env.REACT_APP_ENVIROMENT
+    let URL = process.env.REACT_ENVIROMENT
     const [identificacionError, setIdentificacionError] = useState(false)
     const [nomError, setNomError] = useState(false)
     const [apellidoError, setApellidoError] = useState(false)
