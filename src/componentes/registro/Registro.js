@@ -135,7 +135,7 @@ export default function Registro() {
             setPassComparacion(true)
             return
         }
-console.log("--->>",values)
+console.log("--->>",URL)
         /*fetch('http://localhost:3001/registro-usuario', {
             method: 'POST',
             headers: {
