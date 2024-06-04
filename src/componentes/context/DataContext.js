@@ -7,9 +7,8 @@ const DataProvider = ({children}) =>{
 
     return (
         //valores que esten dentro se van a repartir
-        <dataContext.Provider value={{librosDelCarrito, setLibrosDelCarrito,cantidadElementos,setCantidadElementos}}></dataContext.Provider>
+        <dataContext.Provider value={{librosDelCarrito, setLibrosDelCarrito,cantidadElementos,setCantidadElementos}}>{children}</dataContext.Provider>
     )
-
 }
 
 export default DataProvider;
