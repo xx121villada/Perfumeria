@@ -110,6 +110,7 @@ app.use(cors());
 
 const controller ={
     register: function(req,res){
+        console.log("body",req.body)
         let config = {
             method: "GET",
             maxBodyLength: Infinity,
