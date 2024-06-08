@@ -41,7 +41,8 @@ function Header() {
                             </li>
                             </Link>
                             <Link to="/carrito">
-                                <h2> 🛒{librosDelCarrito.length}</h2>{""}
+                                <h2 className="carrito"> 🛒{librosDelCarrito.length} </h2>
+                                <h2 className="tituloCompras"> {"Compras"}</h2>
                             </Link>
                         </ul>
                     </div>

@@ -76,8 +76,6 @@ export default function Registro() {
     const handleChange = (e) => {
 
         const { name, value } = e.target
-        console.log("Name:", name);
-        console.log("Value:", value);
         const newValues = {
             ...values,
             [name]: value,
