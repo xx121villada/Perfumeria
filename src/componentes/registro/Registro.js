@@ -10,6 +10,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import { Link } from 'react-router-dom';
 
 export default function Registro() {
+    console.log(process.env.REACT_APP_ENVIRONMENT)
     const URL = process.env.REACT_APP_ENVIRONMENT
 
     const [identificacionError, setIdentificacionError] = useState(false)
