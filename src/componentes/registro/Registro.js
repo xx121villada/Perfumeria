@@ -10,7 +10,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import { Link } from 'react-router-dom';
 
 export default function Registro() {
-    console.log(process.env.REACT_APP_ENVIRONMENT)
+    // console.log(process.env.REACT_APP_ENVIRONMENT)
     const URL = process.env.REACT_APP_ENVIRONMENT
 
     const [identificacionError, setIdentificacionError] = useState(false)
@@ -134,7 +134,6 @@ export default function Registro() {
             setPassComparacion(true)
             return
         }
-        console.log(values)
         console.log("--->>",URL)
         /*fetch('http://localhost:3001/registro-usuario', {
             method: 'POST',
