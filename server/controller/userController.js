@@ -106,6 +106,7 @@ const express = require("express") //framework
 const app = express()
 const axios = require('axios'); 
 const cors = require("cors"); 
+const connection = require('../configDB/configDB')
 app.use(cors());
 
 const controller ={
@@ -170,7 +171,21 @@ const controller ={
                         }
                     })
             })
+    },
+
+    registerBD: function(req, res){
+        const {identificacion,nombres,apellidos,email,direccion,telefono,fechaNacimiento,password,rol,ciudad} = JSON.parse(JSON.stringify(req.body))
+
+        try{
+            const sql = "INSERT INTO sql10716116.usuario (identificacion,nombres,apellidos,email,direccion,telefono,fechaNacimiento,password,rol,ciudad,fechaCreacion) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+            connection.execute(sql, [identificacion,nombres,apellidos,email,direccion,telefono,fechaNacimiento,password,rol,ciudad,new Date()])
+            res.status(200).send("Registro Exitoso")
+        }catch(error){
+            console.error("Error al insertar en la base de datos")
+            res.status(500).send("Error al insertar en la base de datos")
+        }
     }
+    
 }
 
 module.exports = controller;
