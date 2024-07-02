@@ -177,9 +177,10 @@ const controller ={
         const {identificacion,nombres,apellidos,email,direccion,telefono,fechaNacimiento,password,rol,ciudad} = JSON.parse(JSON.stringify(req.body))
 
         try{
-            const sql = "INSERT INTO sql10716116.usuario (identificacion,nombres,apellidos,email,direccion,telefono,fechaNacimiento,password,rol,ciudad,fechaCreacion) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+            const sql = "INSERT INTO sql10717573.new_table (identificacion,nombres,apellidos,email,direccion,telefono,fechaNacimiento,password,rol,ciudad,fechaCreacion) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
             connection.execute(sql, [identificacion,nombres,apellidos,email,direccion,telefono,fechaNacimiento,password,rol,ciudad,new Date()])
             res.status(200).send("Registro Exitoso")
+            console.log("correcto")
         }catch(error){
             console.error("Error al insertar en la base de datos")
             res.status(500).send("Error al insertar en la base de datos")
