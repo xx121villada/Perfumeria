@@ -15,7 +15,7 @@
     "bootstrap": "^5.3.3",
     "env-cmd": "^10.1.0",
     "jwt-decode": "^4.0.0",
-    "mysql2": "^3.10.1",
+    "mysql2": "^3.10.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-idle-timer": "^5.7.2",
