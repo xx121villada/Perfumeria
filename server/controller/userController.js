@@ -1,4 +1,4 @@
-/*codigo JSON registro local
+//codigo JSON registro local
 const fs = require('fs').promises;
 const { password } = require('@mui/icons-material');
 const path = require('path');
@@ -27,6 +27,7 @@ const controller = {
                 rol: req.body.rol,
                 fecha_creacion: new Date(),
                 ciudad: req.body.ciudad,
+                image: req.file.filename,
             };
 
             for (x of users) {
@@ -98,95 +99,96 @@ const controller = {
         }
     },
 }
-module.exports = controller;*/
+module.exports = controller;
 
 //codigo JSON registro remoto
 
-const express = require("express") //framework
-const app = express()
-const axios = require('axios'); 
-const cors = require("cors"); 
-const connection = require('../configDB/configDB')
-app.use(cors());
+// const express = require("express") //framework
+// const app = express()
+// const axios = require('axios'); 
+// const cors = require("cors"); 
+// const connection = require('../configDB/configDB')
+// app.use(cors());
 
-const controller ={
-    register: function(req,res){
-        console.log("body",req.body)
-        let config = {
-            method: "GET",
-            maxBodyLength: Infinity,
-            url: 'https://api.jsonbin.io/v3/b/6654d653acd3cb34a84e8a8d',
-            headers: {
-              'Content-Type': 'application/json',
-              "X-Master-Key": "$2a$10$NJqqXp1XvTNOsxGDxucB7.JbP0I51Wna7JNHVurUk9Y9vllQiGby2"
-            }
-        };
-        axios(config)
-            .then(result => {
-                let id = result.data.record.length+1
-                    const usuarioNuevo = {
+// const controller ={
+//     register: function(req,res){
+//         console.log("body",req.body)
+//         let config = {
+//             method: "GET",
+//             maxBodyLength: Infinity,
+//             url: 'https://api.jsonbin.io/v3/b/6654d653acd3cb34a84e8a8d',
+//             headers: {
+//               'Content-Type': 'application/json',
+//               "X-Master-Key": "$2a$10$NJqqXp1XvTNOsxGDxucB7.JbP0I51Wna7JNHVurUk9Y9vllQiGby2"
+//             }
+//         };
+//         axios(config)
+//             .then(result => {
+//                 let id = result.data.record.length+1
+//                     const usuarioNuevo = {
 
-                        id: id,
-                        identificacion: req.body.identificacion,
-                        nombres: req.body.nombres,
-                        apellidos: req.body.apellidos,
-                        email: req.body.email,
-                        direccion: req.body.direccion,
-                        telefono: req.body.telefono,
-                        fechaNacimiento: req.body.fechaNacimiento,
-                        password: req.body.password,
-                        estado: "activo",
-                        rol: req.body.rol,
-                        fecha_creacion: new Date(),
-                        ciudad: req.body.ciudad,
-                    };
-                    if(result.data.record.length === 0){
-                        result.data.record.push(usuarioNuevo);
-                    }else{
-                        for(x of result.data.record){
-                            if(x.email === req.body.email){
-                                res.status(400).send("Usuario ya existe")
-                                return
-                            }
-                        }
-                        result.data.record.push(usuarioNuevo)
-                    }
+//                         id: id,
+//                         identificacion: req.body.identificacion,
+//                         nombres: req.body.nombres,
+//                         apellidos: req.body.apellidos,
+//                         email: req.body.email,
+//                         direccion: req.body.direccion,
+//                         telefono: req.body.telefono,
+//                         fechaNacimiento: req.body.fechaNacimiento,
+//                         password: req.body.password,
+//                         estado: "activo",
+//                         rol: req.body.rol,
+//                         fecha_creacion: new Date(),
+//                         ciudad: req.body.ciudad,
+//                         image:req.file.filename,
+//                     };
+//                     if(result.data.record.length === 0){
+//                         result.data.record.push(usuarioNuevo);
+//                     }else{
+//                         for(x of result.data.record){
+//                             if(x.email === req.body.email){
+//                                 res.status(400).send("Usuario ya existe")
+//                                 return
+//                             }
+//                         }
+//                         result.data.record.push(usuarioNuevo)
+//                     }
 
-                    fetch("https://api.jsonbin.io/v3/b/6654d653acd3cb34a84e8a8d", {
-                        method : "PUT",
-                        headers:{
-                            'Content-Type': 'application/json',
-                            "X-Master-Key": "$2a$10$NJqqXp1XvTNOsxGDxucB7.JbP0I51Wna7JNHVurUk9Y9vllQiGby2"
-                        },
-                        body: JSON.stringify(result.data.record)
-                    })
-                    .then(response => {
-                        if (response.status === 200) {
-                          res.status(200).send('ok')
-                          return
-                        }
-                        else {
-                          res.status(400).send("No Ok")
-                          return
-                        }
-                    })
-            })
-    },
+//                     fetch("https://api.jsonbin.io/v3/b/6654d653acd3cb34a84e8a8d", {
+//                         method : "PUT",
+//                         headers:{
+//                             'Content-Type': 'application/json',
+//                             "X-Master-Key": "$2a$10$NJqqXp1XvTNOsxGDxucB7.JbP0I51Wna7JNHVurUk9Y9vllQiGby2"
+//                         },
+//                         body: JSON.stringify(result.data.record)
+//                     })
+//                     .then(response => {
+//                         if (response.status === 200) {
+//                           res.status(200).send('ok')
+//                           return
+//                         }
+//                         else {
+//                           res.status(400).send("No Ok")
+//                           return
+//                         }
+//                     })
+//             })
+//     },
 
-    registerBD: function(req, res){
-        const {identificacion,nombres,apellidos,email,direccion,telefono,fechaNacimiento,password,rol,ciudad} = JSON.parse(JSON.stringify(req.body))
+//     registerBD: function(req, res){
+//         const {identificacion,nombres,apellidos,email,direccion,telefono,fechaNacimiento,password,rol,ciudad} = JSON.parse(JSON.stringify(req.body))
 
-        try{
-            const sql = "INSERT INTO triggers.usuarios(identificacion,nombres,apellidos,email,direccion,telefono,fechaNacimiento,password,rol,ciudad,fechaCreacion) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-            connection.execute(sql, [identificacion,nombres,apellidos,email,direccion,telefono,fechaNacimiento,password,rol,ciudad,new Date()])
-            res.status(200).send("Registro Exitoso")
-            console.log("correcto")
-        }catch(error){
-            console.error("Error al insertar en la base de datos" +error)
-            res.status(500).send("Error al insertar en la base de datos")
-        }
-    }
+//         try{
+//             const sql = "INSERT INTO triggers.usuarios(identificacion,nombres,apellidos,email,direccion,telefono,fechaNacimiento,password,rol,ciudad,fechaCreacion) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+//             connection.execute(sql, [identificacion,nombres,apellidos,email,direccion,telefono,fechaNacimiento,password,rol,ciudad,new Date()])
+//             res.status(200).send("Registro Exitoso")
+//             console.log("correcto")
+//         }catch(error){
+//             console.error("Error al insertar en la base de datos" +error)
+//             res.status(500).send("Error al insertar en la base de datos")
+//         }
+//     }
     
-}
+// }
 
-module.exports = controller;
+// module.exports = controller;

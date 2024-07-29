@@ -27,6 +27,8 @@ export default function Registro() {
     const [ciudades, setCiudades] = useState([]);
     const [showPassword, setShowPassword] = useState(false); // Estado para controlar la visibilidad de la contraseña
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [imagenPerfil, setImagenPerfil] = useState(false);
+    const [file,setFile]= useState(null)
 
     const form = useRef()
 
@@ -55,6 +57,9 @@ export default function Registro() {
     function passError() {
         setPasswordError(false)
     }
+    function imagenPerfilError(){
+        setImagenPerfil(false)
+    }
     function passRepeat() {
         setPassComparacion(false)
         setPasswordErrorRepeat(false)
@@ -76,12 +81,22 @@ export default function Registro() {
     });
     const handleChange = (e) => {
 
-        const { name, value } = e.target
-        const newValues = {
-            ...values,
-            [name]: value,
+        // const { name, value } = e.target
+        // const newValues = {
+        //     ...values,
+        //     [name]: value,
+        // }
+        // setValues(newValues)
+
+        if(e.target.name === "foto"){
+            const file = e.target.files ? e.target.files[0] : null
+            setValues({...values, [e.target.name]: file});
+            setFile("")
         }
-        setValues(newValues)
+        else {
+            setValues({...values, [e.target.name]: e.target.value});
+        }
+        
     }
 
     const handleSubmit = (e) => {
@@ -100,7 +115,7 @@ export default function Registro() {
         }
         else if (values.apellidos.length < 3 || values.apellidos.length === 0) {
             setApellidoError(true)
-            return
+            return 
         }
         else if (values.email.length === 0) {
             setErrorEmailVacio(true)
@@ -133,6 +148,9 @@ export default function Registro() {
         else if (values.password !== values.passRepeat) {
             setPassComparacion(true)
             return
+        }else if (file === null ){
+            setImagenPerfil(true)
+            return
         }
         console.log("--->>",URL)
         /*fetch('http://localhost:3001/registro-usuario', {
@@ -142,13 +160,19 @@ export default function Registro() {
             },
             body: JSON.stringify(values)
         })*/
+       const formData = new FormData();
+       for (const [key, value]of Object.entries(values)){
+        formData.append(key,value)
+       }
+       console.log("form",formData)
         fetch(`${URL}/registro-usuario`, {
             method: 'POST',
-            headers: {
-                "Content-Type": "application/json", 
-                'Accept': 'application/json'
-            },
-            body:JSON.stringify(values),
+            // headers: {
+            //     "Content-Type": "application/json", 
+            //     'Accept': 'application/json'
+            // },
+            // body:JSON.stringify(values),
+            body : formData
         })
             .then(response => {
                 if (response.status === 200) {
@@ -221,7 +245,7 @@ export default function Registro() {
             </nav>
         </div>
         <div className='formulario'>
-            <form className='formRegistro' onSubmit={handleSubmit} ref={form}>
+            <form className='formRegistro' onSubmit={handleSubmit} ref={form} encType='multipart/form-data'>
                 <div className="form-group">
                     <h1 className='tituloRegistro'> REGISTRO </h1>
                     <label htmlFor="numeroId">Documento</label>
@@ -306,6 +330,15 @@ export default function Registro() {
                             </option>
                         ))}
                     </select>
+                </div>
+                <div className='form-outline mb-4'> 
+                    <label className='form-label' htmlFor='form3Example3cg'>
+                            Selecciona una imagen de perfil                        
+                    </label><br/>
+
+                    <input type="file" name='foto' accept='.jpg, .jpeg, .png, .gif, .jfif' onChange={handleChange} onClick={imagenPerfilError}/>
+
+                    {imagenPerfil ? (<p> Debe seleccionar una imagen de perfil</p>):("")}
                 </div>
                 <button className='btnRegistrar' type="submit">Registrarse</button>
             </form>

@@ -1,3 +1,50 @@
 [
-    
+    {
+        "id": 1,
+        "identificacion": "7256789097",
+        "nombres": "Tempore enim suscip",
+        "apellidos": "Fugit ex provident",
+        "email": "mehib@mailinator.com",
+        "direccion": "Ut cillum recusandae",
+        "telefono": "6456789096",
+        "fechaNacimiento": "2024-10-04",
+        "password": "Dani1234",
+        "estado": "activo",
+        "rol": "Usuario",
+        "fecha_creacion": "2024-07-29T20:14:00.808Z",
+        "ciudad": "Morelia",
+        "image": "1722284040803"
+    },
+    {
+        "id": 2,
+        "identificacion": "3967890984",
+        "nombres": "Pariatur Id id aut",
+        "apellidos": "Dolore explicabo Ve",
+        "email": "mabu@mailinator.com",
+        "direccion": "Aut dignissimos nobi",
+        "telefono": "3245678908",
+        "fechaNacimiento": "1971-03-09",
+        "password": "Cami1234",
+        "estado": "activo",
+        "rol": "Administrador",
+        "fecha_creacion": "2024-07-29T20:15:18.643Z",
+        "ciudad": "Santo Tomás",
+        "image": "1722284118640"
+    },
+    {
+        "id": 3,
+        "identificacion": "5234567888",
+        "nombres": "Accusantium ad volup",
+        "apellidos": "Voluptatem fuga Ad ",
+        "email": "bira@mailinator.com",
+        "direccion": "In quam nisi ut aliq",
+        "telefono": "4034567890",
+        "fechaNacimiento": "1977-08-10",
+        "password": "MMena123",
+        "estado": "activo",
+        "rol": "Administrador",
+        "fecha_creacion": "2024-07-29T20:23:47.974Z",
+        "ciudad": "Nueva Granada",
+        "image": "1722284627965"
+    }
 ]
