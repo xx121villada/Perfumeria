@@ -46,5 +46,37 @@
         "fecha_creacion": "2024-07-29T20:23:47.974Z",
         "ciudad": "Nueva Granada",
         "image": "1722284627965"
+    },
+    {
+        "id": 4,
+        "identificacion": "7734566665",
+        "nombres": "Ut suscipit ullamco ",
+        "apellidos": "Et non id quisquam d",
+        "email": "zocuz@mailinator.com",
+        "direccion": "Asperiores temporibu",
+        "telefono": "4545677777",
+        "fechaNacimiento": "1974-12-26",
+        "password": "Xime0987",
+        "estado": "activo",
+        "rol": "Administrador",
+        "fecha_creacion": "2024-08-05T18:49:19.092Z",
+        "ciudad": "Puerto Nariño",
+        "image": "1722883759084.jpg"
+    },
+    {
+        "id": 5,
+        "identificacion": "2978678898",
+        "nombres": "Exercitation et eu q",
+        "apellidos": "Culpa cum ipsa con",
+        "email": "kipoha@mailinator.com",
+        "direccion": "Ipsum odio recusanda",
+        "telefono": "4089678899",
+        "fechaNacimiento": "2012-06-20",
+        "password": "Juli1234",
+        "estado": "activo",
+        "rol": "Usuario",
+        "fecha_creacion": "2024-08-05T20:29:09.846Z",
+        "ciudad": "La Primavera",
+        "image": "https://firebasestorage.googleapis.com/v0/b/perfumeriaxime.appspot.com/o/pokeball.png?alt=media&token=571beb6a-fbcd-4ace-bdb2-a9b28070c370"
     }
 ]

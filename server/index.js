@@ -5,6 +5,7 @@ const axios = require('axios');
 const bodyParser = require('body-parser');
 const path = require('path')
 const multer = require('multer')
+const subida = multer({storage : multer.memoryStorage()})
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
@@ -19,7 +20,7 @@ const storage = multer.diskStorage({
         cb(null, path.join(__dirname, './public/images'))
     },
     filename: function (req, file,cb){
-        cb(null, `${Date.now()}`)
+        cb(null, `${Date.now()}`+ ".jpg")
     }
 })
 
@@ -46,7 +47,8 @@ app.get('/', (req, res) => {
 const user = require("./controller/userController");
 
 // app.use("/registro-usuario", user.registerBD);
-app.post("/registro-usuario", upload.single("foto"),user.register) // intermediadorv
+// app.post("/registro-usuario", upload.single("foto"),user.register) // intermediadorv
+app.post("/registro-usuario", subida.single("foto"),user.register) // intermediadorv
 //app.use("/login", user.login);
 
 const PORT = 3001

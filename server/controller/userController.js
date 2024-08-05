@@ -1,15 +1,30 @@
 //codigo JSON registro local
 const fs = require('fs').promises;
-const { password } = require('@mui/icons-material');
+const { password, Download, Co2Sharp } = require('@mui/icons-material');
 const path = require('path');
 
 const userFilePath = path.join(__dirname, "../../src/componentes/usuariosRegistrados.json");
 
+const fireBaseConfig = require("../fireBaseConfiguration")
+const firebase = require("firebase/app")
+const {getStorage, ref, getDownloadURL, uploadBytesResumable} = require("firebase/storage");
+const { get } = require('https');
+firebase.initializeApp(fireBaseConfig); 
+const storage = getStorage();
+// JSON registro local
 const controller = {
     register: async function (req, res) {
         try {
             const usersData = await fs.readFile(userFilePath, "utf8");
             const users = JSON.parse(usersData);
+            
+            const storageRef = ref(storage, req.file.originalname)
+            const metadata = {
+                contentType : req.file.mimetype
+            }
+
+            const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata)
+            const DownloadURL = await getDownloadURL(snapshot.ref)
 
             const ultimo = users.length;
             const usuarioNuevo = {
@@ -27,7 +42,7 @@ const controller = {
                 rol: req.body.rol,
                 fecha_creacion: new Date(),
                 ciudad: req.body.ciudad,
-                image: req.file.filename,
+                image: DownloadURL,
             };
 
             for (x of users) {

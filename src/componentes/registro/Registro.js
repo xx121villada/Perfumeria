@@ -29,6 +29,7 @@ export default function Registro() {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [imagenPerfil, setImagenPerfil] = useState(false);
     const [file,setFile]= useState(null)
+    const [vistaPrevia,setVistaPrevia] = useState(null)
 
     const form = useRef()
 
@@ -92,6 +93,8 @@ export default function Registro() {
             const file = e.target.files ? e.target.files[0] : null
             setValues({...values, [e.target.name]: file});
             setFile("")
+            const objectURL = window.URL.createObjectURL(file);
+            setVistaPrevia(objectURL)
         }
         else {
             setValues({...values, [e.target.name]: e.target.value});
@@ -339,6 +342,7 @@ export default function Registro() {
                     <input type="file" name='foto' accept='.jpg, .jpeg, .png, .gif, .jfif' onChange={handleChange} onClick={imagenPerfilError}/>
 
                     {imagenPerfil ? (<p> Debe seleccionar una imagen de perfil</p>):("")}
+                    <img id='vistaPrevia' src={vistaPrevia} className='img-thumbnail'></img>
                 </div>
                 <button className='btnRegistrar' type="submit">Registrarse</button>
             </form>
