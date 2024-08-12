@@ -7,6 +7,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import GoogleOAuth from '../GoogleOAuth/GoogleOAuth';
+import FireBaseAuth from '../firebase/FirebaseAuth';
 
 
 const LoginUser = () => {
@@ -148,6 +149,9 @@ const LoginUser = () => {
                                         </form>
                                         <div className="d-flex justify-content-center text-center mt-3 pt-1">
                                             <GoogleOAuth/>
+                                        </div>
+                                        <div className="d-flex justify-content-center text-center mt-3 pt-1">
+                                            <FireBaseAuth/>
                                         </div>
                                     </div>
                                     <div>
