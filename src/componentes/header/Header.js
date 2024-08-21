@@ -1,15 +1,29 @@
-import React,{useContext}from "react";
+import React,{useContext, useEffect}from "react";
 import './header.css';
 import HomeIcon from '@mui/icons-material/Home';
-import AddIcCallIcon from '@mui/icons-material/AddIcCall';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import LoginIcon from '@mui/icons-material/Login';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import {Link} from "react-router-dom";
 import { dataContext } from '../context/DataContext'
+import Cookies from "universal-cookie";
 
 function Header() {
 
     const {librosDelCarrito, setLibrosDelCarrito} = useContext(dataContext)
+
+    function WhatsApp(){
+        // const telefono = "3144270799"
+        // const mensaje = "Hola, Quiero mads informacion"
+        // const url = `https://api.whatsapp.com/send?phone=${telefono}&texto=${encodeURIComponent(mensaje)}`
+        const url = `https://wa.link/xx05r1`
+        window.open(url,"_blank")
+    }
+    // useEffect(()=>{
+    //     if(Cookies.get("email")){
+    //         window.location.hash="/sesion"; 
+    //     }
+    // })
     return (
         <div className="contenedor">
             <nav className="navbar navbar-expand-lg">
@@ -25,8 +39,8 @@ function Header() {
                                 <a className="nav-link active" aria-current="page" href="#">Home</a>
                             </li>
                             <li className="nav-item">
-                                <AddIcCallIcon/> 
-                                <a className="nav-link"> Contacto </a>
+                                <WhatsAppIcon/> 
+                                <a className="nav-link" href="#" onClick={WhatsApp}> Contacto </a>
                             </li>
                             <Link to='/registro'>
                             <li className="nav-item">
