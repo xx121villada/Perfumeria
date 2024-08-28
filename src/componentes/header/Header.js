@@ -29,7 +29,7 @@ function Header() {
             <nav className="navbar navbar-expand-lg">
                 <div className="container-fluid">
                     <img className="logo" src="icono.jpg" alt="logo"/>
-                    <div className="titulo">
+                    <div className="tituloH">
                     <p> DULCE FRAGANCIA </p>
                     </div>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
