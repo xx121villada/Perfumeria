@@ -218,35 +218,119 @@ export default function Registro() {
     };
 
     return (
-        <div>
+         <div>
             <div className="contenedor">
-            <nav className="navbar navbar-expand-lg">
+            <nav className="navbar">
                 <div className="container-fluid">
-                    <img className="logo" src="icono.jpg" alt="logo"/>
-                    <div className="titulo">
-                    <p> DULCE FRAGANCIA </p>
+                    <img className="logo" src="icono.jpg" alt="logo" />
+                    <div className="tituloHeader">
+                        <p> DULCE FRAGANCIA </p>
                     </div>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    {/* <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
                                 <HomeIcon/>
                                 <a className="nav-link active" aria-current="page" href="#">Home</a>
                             </li>
                             <li className="nav-item">
-                                <AddIcCallIcon/> 
-                                <a className="nav-link"> Contacto </a>
+                                <WhatsAppIcon/> 
+                                <a className="nav-link" href="#" onClick={WhatsApp}> Contacto </a>
                             </li>
+                            <Link to='/registro'>
+                            <li className="nav-item">
+                                <AccountBoxIcon className="iconoHeader"/>
+                                <a className="nav-link"> Registrarse </a>
+                            </li>
+                            </Link>
                             <Link to="/login">
                             <li className="nav-item">
                                 <LoginIcon className="iconoHeader"/>
                                 <a className="nav-link"> Iniciar sesión </a>
                             </li>
                             </Link>
+                            <Link to="/carrito">
+                                <h2 className="carrito"> 🛒{librosDelCarrito.length} </h2>
+                                <h2 className="tituloCompras"> {"Compras"}</h2>
+                            </Link>
+                        </ul>
+                    </div> */}
+                    <div class="navigation">
+                        <ul>
+                            <li class="list active">
+                                <a href="#">
+                                    <span class="icon">
+                                        <ion-icon name="home-outline"></ion-icon>
+                                    </span>
+                                    <span class="text">Home</span>
+                                    <span class="circle"> </span>
+                                </a>
+                            </li>
+                            <li class="list">
+                                <a href="#" >
+                                    <span class="icon">
+                                        <ion-icon name="logo-whatsapp"></ion-icon>
+                                    </span>
+                                    <span class="text">Contacto</span>
+                                    <span class="circle"> </span>
+                                </a>
+                            </li>
+                            {/* <Link to='/registro'> */}
+                            <li class="list">
+                                <a href="#">
+                                    <span class="icon">
+                                    <ion-icon name="person"></ion-icon>
+                                    </span>
+                                    <span class="text">Registro</span>
+                                    <span class="circle"> </span>
+                                </a>
+                            </li>
+                            {/* </Link> */}
+                            {/* <Link to="/login"> */}
+                            <li class="list">
+                                <a href="#">
+                                    <span class="icon">
+                                        <ion-icon name="log-in"></ion-icon>
+                                    </span>
+                                    <span class="text">Inicio sesion </span>
+                                    <span class="circle"> </span>
+                                </a>
+                            </li>
+                            {/* </Link> */}
+                            <div class="indicator"></div>
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
+        {/* //     <div className="contenedor">
+        //     <nav className="navbar navbar-expand-lg">
+        //         <div className="container-fluid">
+        //             <img className="logo" src="icono.jpg" alt="logo"/>
+        //             <div className="titulo">
+        //             <p> DULCE FRAGANCIA </p>
+        //             </div>
+        //             <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        //                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        //                     <li className="nav-item">
+        //                         <HomeIcon/>
+        //                         <a className="nav-link active" aria-current="page" href="#">Home</a>
+        //                     </li>
+        //                     <li className="nav-item">
+        //                         <AddIcCallIcon/> 
+        //                         <a className="nav-link"> Contacto </a>
+        //                     </li>
+        //                     <Link to="/login">
+        //                     <li className="nav-item">
+        //                         <LoginIcon className="iconoHeader"/>
+        //                         <a className="nav-link"> Iniciar sesión </a>
+        //                     </li>
+        //                     </Link>
+        //                 </ul>
+        //             </div>
+        //         </div>
+        //     </nav>
+        // </div> */}
+        
         <div className='formulario'>
             <form className='formRegistro' onSubmit={handleSubmit} ref={form} encType='multipart/form-data'>
                 <div className="form-group">

@@ -1,5 +1,5 @@
 .logo{
-    width: 10% ;
+    width:15% ;
     height: auto;
     text-align: center;
 }
@@ -8,7 +8,7 @@
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     margin: 2% 1% 0% 1%;
 }
-.tituloH{
+.tituloHeader{
     margin-right: 250px;
     margin-left: 20px;
     margin-bottom: 0;
@@ -23,4 +23,150 @@
     font-size: 20px;
     color: rgb(35, 33, 33);
     margin-left: 80px;
+}
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+:root {
+  --clr: #ffffff;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--clr);
+}
+.navigation {
+  position: relative;
+  width: 400px;
+  height: 70px;
+  background: linear-gradient(45deg, #2196f3,#e91e63);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.navigation ul {
+  display: flex;
+  width: 350px;
+}
+.navigation ul li {
+  position: relative;
+  list-style: none;
+  width: 70px;
+  height: 70px;
+  z-index: 1;
+}
+.navigation ul li a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+}
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  line-height: 75px;
+  font-size: 1.8em;
+  text-align: center;
+  transition: .5s;
+  color: #000000;
+}
+.navigation ul li.active a .icon {
+  transform: translateY(-28px);
+}
+.navigation ul li a .text {
+  position: absolute;
+  color: #000000;
+  font-weight: 400;
+  font-size: 1.2em;
+  letter-spacing: 0.05em;
+  transition: 0.5s;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.navigation ul li.active a .text {
+  opacity: 1;
+  transform: translateY(18px);
+}
+.navigation ul li a .circle{
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-radius: 50%;
+    border: 2px solid #000000;
+    transform: translateY(-29px) scale(0);
+}
+.navigation ul li.active a .circle{
+    transform: translateY(-29px) scale(1);
+}
+
+.indicator {
+  position: absolute;
+  top: -50%;
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(45deg, #2196f3,#e91e63);
+  border-radius: 50%;
+  border: 6px solid var(--clr);
+  justify-content: center;
+  align-items: center;
+  transition: .5s;
+  display: flex;
+}
+.indicator::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -22px;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-top-right-radius: 20px;
+  box-shadow: 1px -10px 0 0 var(--clr);
+}
+.indicator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -22px;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-top-left-radius: 20px;
+  box-shadow: -1px -10px 0 0 transparent;
+}
+
+/* Indicator Transitions */
+.navigation ul li:nth-child(1).active ~ .indicator {
+  transform: translateX(calc(70px * 0));
+}
+.navigation ul li:nth-child(2).active ~ .indicator {
+  transform: translateX(calc(70px * 1));
+}
+.navigation ul li:nth-child(3).active ~ .indicator {
+  transform: translateX(calc(70px * 2));
+}
+.navigation ul li:nth-child(4).active ~ .indicator {
+  transform: translateX(calc(70px * 3));
+}
+.navigation ul li:nth-child(5).active ~ .indicator {
+  transform: translateX(calc(70px * 4));
+}
+.compras{
+  margin-right: 10px ;
 }
